@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:45:25 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/09 18:25:53 by jehelee          ###   ########.fr       */
+/*   Created: 2022/11/09 18:23:44 by jehelee           #+#    #+#             */
+/*   Updated: 2022/11/09 18:45:23 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+#include<stdio.h>
+
+unsigned long	ft_strlen(const char *string)
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
-		return (1);
-	return (0);
+	unsigned long	i;
+
+	i = 0;
+	while (string[i])
+		i++;
+	return (i);
 }

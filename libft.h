@@ -6,16 +6,18 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/09 17:43:29 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/09 18:58:53 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-int	ft_isalnum(int c);
+int				ft_isalpha(int c);
+int				ft_isdigit(int c);
+int				ft_isalnum(int c);
+int				ft_isprint(int c);
+unsigned long	ft_strlen(const char *string);
 
 #endif
 
@@ -31,6 +33,30 @@ int	ft_isalpha(int c)
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	ft_isalnum(int c)
+{
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	return (0);
+}
+
+unsigned long	ft_strlen(const char *string)
+{
+	unsigned long	i;
+
+	i = 0;
+	while (string[i])
+		i++;
+	return (i);
+}
+
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c <= 126)
 		return (1);
 	return (0);
 }
