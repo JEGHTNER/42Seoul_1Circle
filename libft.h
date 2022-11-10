@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/10 19:17:17 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/10 19:44:53 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void			*ft_memset(void *ptr, int value, unsigned long len);
 void			ft_bzero(void *ptr, unsigned long len);
 void			*ft_memcpy(void *dst, const void *src, unsigned long len);
 void			*ft_memmove(void *dst, const void *src, unsigned long len);
+void			*ft_memchr(const void *ptr, int c, unsigned long len);
 
 #endif
