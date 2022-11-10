@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 18:23:44 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/10 13:11:05 by jehelee          ###   ########.fr       */
+/*   Created: 2022/11/10 13:07:26 by jehelee           #+#    #+#             */
+/*   Updated: 2022/11/10 14:49:43 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned long	ft_strlen(const char *string)
+void	*ft_memset(void *ptr, int value, unsigned long len)
 {
-	unsigned long	i;
+	unsigned long		i;
+	char				*tmp;
 
+	tmp = (char *)ptr;
 	i = 0;
-	while (string[i])
+	while (i < len)
+	{
+		tmp[i] = (unsigned char)value;
 		i++;
-	return (i);
+	}
+	return ((void *)ptr);
 }
