@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/15 14:32:35 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:44:49 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *ptr, int c, size_t len);
 char			*ft_strchr(const char *string, int c);
 char			*ft_strrchr(const char *string, int c);
+char			*ft_strnstr(const char *hay, const char *needle, size_t len);
 
 #endif
