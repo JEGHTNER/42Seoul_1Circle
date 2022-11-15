@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:31:49 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/15 14:34:16 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:42:08 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ char	*ft_strrchr(const char *string, int c)
 	i = 0;
 	tmp = (char *)string;
 	while (*tmp)
+		tmp++;
+	if ((char)c == '\0')
+		return (tmp);
+	while (tmp != string)
 	{
 		if (*tmp == (char)c)
 			return (tmp);
-		tmp++;
+		tmp--;
 	}
-	if ((char)c == '\0')
-		return (tmp);
 	return (0);
 }
