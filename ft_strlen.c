@@ -6,13 +6,15 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:23:44 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/10 13:11:05 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/15 12:39:56 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned long	ft_strlen(const char *string)
+#include "libft.h"
+
+size_t	ft_strlen(const char *string)
 {
-	unsigned long	i;
+	size_t	i;
 
 	i = 0;
 	while (string[i])

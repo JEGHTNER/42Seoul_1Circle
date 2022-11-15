@@ -6,11 +6,13 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 19:40:59 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/10 19:54:39 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/15 12:38:27 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memchr(const void *ptr, int c, unsigned long len)
+#include "libft.h"
+
+void	*ft_memchr(const void *ptr, int c, size_t len)
 {
 	char			*tmp_ptr;
 	unsigned char	tmp_c;

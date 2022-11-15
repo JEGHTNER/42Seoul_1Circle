@@ -6,14 +6,16 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:07:26 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/10 18:05:20 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/15 12:39:37 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(void *ptr, int value, unsigned long len)
+#include "libft.h"
+
+void	*ft_memset(void *ptr, int value, size_t len)
 {
-	unsigned long		i;
-	char				*tmp;
+	size_t	i;
+	char	*tmp;
 
 	tmp = (char *)ptr;
 	i = 0;

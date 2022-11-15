@@ -6,11 +6,13 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:36 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/10 19:38:51 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/15 12:39:08 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memmove(void *dst, const void *src, unsigned long len)
+#include "libft.h"
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char		*dst_tmp;
 	const char	*src_tmp;

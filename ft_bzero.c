@@ -6,14 +6,16 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:33:11 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/10 16:41:30 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/15 12:38:11 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_bzero(void *ptr, unsigned long len)
+#include "libft.h"
+
+void	ft_bzero(void *ptr, size_t len)
 {
-	char			*tmp;
-	unsigned long	i;
+	char	*tmp;
+	size_t	i;
 
 	tmp = (char *)ptr;
 	i = 0;
