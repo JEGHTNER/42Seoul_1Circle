@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/15 16:15:30 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/15 16:34:09 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int				ft_isalnum(int c);
 int				ft_isprint(int c);
 int				ft_strncmp(const char *string1, const char *string2, size_t n);
 int				ft_memcmp(const void *string1, const void *string2, size_t n);
+int				ft_toupper(int c);
 size_t			ft_strlen(const char *string);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
