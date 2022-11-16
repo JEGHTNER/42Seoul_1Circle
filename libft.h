@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehelee <jehelee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 12:40:16 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/16 12:49:44 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void			ft_bzero(void *ptr, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t len);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *ptr, int c, size_t len);
+void			*ft_calloc(size_t count, size_t size);
 char			*ft_strchr(const char *string, int c);
 char			*ft_strrchr(const char *string, int c);
 char			*ft_strnstr(const char *hay, const char *needle, size_t len);
 char			*ft_strdup(const char *string);
+
 
 #endif
