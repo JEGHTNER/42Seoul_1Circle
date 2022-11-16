@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:59:24 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 13:28:56 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/16 18:18:39 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static int	check_space_sign(const char *string, int *sign)
 
 int	ft_atoi(const char *string)
 {
-	int					sign;
-	int					i;
-	long long			result;
-	long long			max;
+	int							sign;
+	int							i;
+	unsigned long long			result;
+	unsigned long long			max;
 
-	max = __LONG_MAX__;
+	max = __LONG_LONG_MAX__;
 	sign = 1;
 	result = 0;
 	i = check_space_sign(string, &sign);
@@ -44,7 +44,7 @@ int	ft_atoi(const char *string)
 		result = result * 10 + string[i] - '0' ;
 		if (sign == 1 && result >= max)
 			return (-1);
-		else if (sign == -1 && result >= max + 1)
+		else if (sign == -1 && result > max)
 			return (0);
 		i++;
 	}
