@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 12:49:44 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:32:48 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ char			*ft_strchr(const char *string, int c);
 char			*ft_strrchr(const char *string, int c);
 char			*ft_strnstr(const char *hay, const char *needle, size_t len);
 char			*ft_strdup(const char *string);
-
 
 #endif

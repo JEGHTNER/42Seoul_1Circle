@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:31:49 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 12:45:16 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:47:46 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ char	*ft_strrchr(const char *string, int c)
 			return (tmp);
 		tmp--;
 	}
+	if (*tmp == (char)c)
+		return (tmp);
 	return (0);
 }

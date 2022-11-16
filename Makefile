@@ -79,7 +79,4 @@ re : fclean all
 $(NAME) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
-bonus : $(OBJS) $(OBJS_BONUS)
-	$(AR) $(ARFLAGS) $(NAME) $^
-
  .PHONY : all clean fclean re
