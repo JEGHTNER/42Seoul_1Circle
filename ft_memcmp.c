@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:44:38 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 12:45:11 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:28:37 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_memcmp(const void *string1, const void *string2, size_t n)
 {
-	int		i;
+	size_t		i;
 	char	*s1_tmp;
 	char	*s2_tmp;
 

@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:14:30 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 12:45:16 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:27:27 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int	ft_strncmp(const char *string1, const char *string2, size_t len)
 {
-	size_t	i;
-
-	while (*string1 || *string2 && len-- > 0)
+	while (*string1 || (*string2 && len-- > 0))
 	{
 		if (*string1 != *string2)
 			return (*string1 - *string2);

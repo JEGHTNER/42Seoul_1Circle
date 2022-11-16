@@ -3,3 +3,6 @@ a.out
 *.dSYM
 test.c
 *.gch
+*.o
+*.a
+
