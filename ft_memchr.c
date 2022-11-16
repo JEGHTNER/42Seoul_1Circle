@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 19:40:59 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 12:45:11 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/16 16:05:42 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	*ft_memchr(const void *ptr, int c, size_t len)
 {
-	char			*tmp_ptr;
+	unsigned char	*tmp_ptr;
 	unsigned char	tmp_c;
+	size_t			i;
 
-	tmp_ptr = (char *)ptr;
+	tmp_ptr = (unsigned char *)ptr;
 	tmp_c = (unsigned char) c;
-	while (len--)
+	i = 0;
+	while (i < len)
 	{
-		if (*tmp_ptr++ == tmp_c)
-			return (--tmp_ptr);
+		if (tmp_ptr[i] == tmp_c)
+			return (&tmp_ptr[i]);
+		i++;
 	}
 	return (0);
 }
