@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:45:17 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/18 14:01:55 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/18 16:24:52 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*ft_strjoin(char const *string1, char const *string2)
 {
-	size_t	total_len;
 	size_t	string1_len;
 	size_t	string2_len;
 	char	*tmp_string;

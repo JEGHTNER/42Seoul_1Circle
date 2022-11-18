@@ -35,7 +35,7 @@ SRCS_1	=       ft_strlen.c		\
 		  ft_tolower.c		\
 		  ft_toupper.c		\
 			
-SRCS_2	=       ft_substr.c		\
+#SRCS_2	=       ft_substr.c		\
 		  ft_strjoin.c		\
 		  ft_strtrim.c		\
 		  ft_split.c		\
@@ -44,7 +44,17 @@ SRCS_2	=       ft_substr.c		\
 		  ft_putchar_fd.c	\
 		  ft_putstr_fd.c	\
 		  ft_putendl_fd.c	\
-		  ft_putnbr_fd.c	\
+		  ft_putnbr_fd.c	\#
+SRCS_2	=       ft_substr.c		\
+		  ft_strjoin.c		\
+		  ft_strtrim.c		\
+		  ft_split.c		\
+		  ft_itoa.c		\
+		  #ft_strmapi.c		\
+		  ft_putchar_fd.c	\
+		  ft_putstr_fd.c	\
+		  ft_putendl_fd.c	\
+		  ft_putnbr_fd.c	\#
 
 SRCS_BN =       ft_lstnew.c		\
 		  ft_lstsize.c		\
@@ -57,7 +67,7 @@ SRCS_BN =       ft_lstnew.c		\
 		  ft_lstdelone.c	\
 
 SRCS	= $(SRCS_1)			\
-	  			\
+	  	 $(SRCS_2)	\
 
 OBJS	= $(SRCS:.c=.o)
 
