@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/23 20:52:17 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/23 21:02:53 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void			ft_striteri(char *string, void (*f)(unsigned int, char*));
 void			ft_putchar_fd(char c, int file_descriptor);
 void			ft_putstr_fd(char *string, int fd);
 void			ft_putendl_fd(char *string, int fd);
+void			ft_putnbr_fd(int number, int fd);
 char			*ft_strchr(const char *string, int c);
 char			*ft_strrchr(const char *string, int c);
 char			*ft_strnstr(const char *hay, const char *needle, size_t len);
