@@ -6,23 +6,46 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:29:35 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/18 17:50:19 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/23 17:03:39 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static char	*string_big_case(char const *string, unsigned int start, size_t len)
+{
+	char	*tmp_string;
+	size_t	str_length;
+
+	str_length = ft_strlen(string);
+	len = str_length;
+	if (!string)
+		return (0);
+	if (start >= str_length)
+		return (ft_strdup(""));
+	tmp_string = malloc(sizeof(char) * (len - start + 1));
+	if (!tmp_string)
+		return (0);
+	ft_strlcpy(tmp_string, &string[start], len + 1);
+	return (tmp_string);
+}
+
 char	*ft_substr(char const *string, unsigned int start, size_t len)
 {
 	char	*tmp_string;
+	size_t	str_length;
 
-	if (len > ft_strlen(string))
-		len = ft_strlen(string);
+	str_length = ft_strlen(string);
+	if (len > str_length)
+	{
+		tmp_string = string_big_case(string, start, len);
+		return (tmp_string);
+	}
 	if (!string)
 		return (0);
-	if (start > ft_strlen(string))
+	if (start >= str_length)
 		return (ft_strdup(""));
-	tmp_string = malloc(sizeof(char) * (len) + 1);
+	tmp_string = malloc(sizeof(char) * (len + 1));
 	if (!tmp_string)
 		return (0);
 	ft_strlcpy(tmp_string, &string[start], len + 1);
