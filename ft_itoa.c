@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:45:30 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/18 16:21:25 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:44:02 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_itoa(int number)
 
 	lnum = (long long)number;
 	digits = count_digits(number);
-	tmp_string = malloc(sizeof(char) * digits + 1);
+	tmp_string = malloc(sizeof(char) * (digits + 1));
 	if (!tmp_string)
 		return (0);
 	if (lnum == 0)
@@ -58,6 +58,7 @@ char	*ft_itoa(int number)
 	if (lnum < 0)
 		tmp_string[0] = '-';
 	lnum = get_abs(number);
+	tmp_string[digits] = '\0';
 	while (lnum > 0)
 	{
 		tmp_string[--digits] = (lnum % 10) + '0';
