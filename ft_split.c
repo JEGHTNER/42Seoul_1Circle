@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:24:19 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/18 15:43:08 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:38:28 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	**ft_split(char const *string, char seperator)
 
 	i = 0;
 	j = 0;
-	words = malloc(sizeof(char *) * count_words(string, seperator) + 1);
+	words = malloc(sizeof(char *) * (count_words(string, seperator) + 1));
 	if (!words)
 		return (0);
 	while (string[i])
