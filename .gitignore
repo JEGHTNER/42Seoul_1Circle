@@ -5,4 +5,5 @@ test.c
 *.gch
 *.o
 *.a
+*.txt
 

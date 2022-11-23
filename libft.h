@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/18 15:46:03 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:07:10 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 int				ft_isascii(int c);
 int				ft_isalpha(int c);
@@ -35,6 +36,9 @@ void			*ft_memcpy(void *dst, const void *src, size_t len);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *ptr, int c, size_t len);
 void			*ft_calloc(size_t count, size_t size);
+void			ft_striteri(char *string, void (*f)(unsigned int, char*));
+void			ft_putchar_fd(char c, int file_descriptor);
+void			ft_putstr_fd(char *s, int fd);
 char			*ft_strchr(const char *string, int c);
 char			*ft_strrchr(const char *string, int c);
 char			*ft_strnstr(const char *hay, const char *needle, size_t len);
@@ -44,5 +48,6 @@ char			*ft_strjoin(char const *string1, char const *string2);
 char			*ft_strtrim(char const *string1, char const *trim_set);
 char			*ft_itoa(int number);
 char			**ft_split(char const *string, char seperator);
+char			*ft_strmapi(char const *string, char (*f)(unsigned int, char));
 
 #endif

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 16:18:47 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/23 17:17:26 by jehelee          ###   ########.fr       */
+/*   Created: 2022/11/23 18:06:49 by jehelee           #+#    #+#             */
+/*   Updated: 2022/11/23 18:16:13 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_striteri(char *string, void (*f)(unsigned int, char*))
+#include "libft.h"
+
+void	ft_putstr_fd(char *string, int file_descriptor)
 {
 	int	i;
 
-	if (!string || !(f))
-		return ;
 	i = 0;
 	while (string[i])
 	{
-		f(i, &string[i]);
-		i++;
+		ft_putchar_fd(string[i], file_descriptor);
 	}
 }
