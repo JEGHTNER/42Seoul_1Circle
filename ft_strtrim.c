@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:03:07 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/23 13:17:41 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/23 20:29:46 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ char	*ft_strtrim(char const *string1, char const *trim_set)
 	int		end;
 	char	*tmp_string;
 
-	if (!string1)
-		return (0);
-	if (!trim_set)
+	if (!string1 || !trim_set)
 		return (0);
 	start = get_start(string1, trim_set);
 	end = get_end(string1, trim_set);
