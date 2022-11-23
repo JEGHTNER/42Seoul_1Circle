@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:03:07 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/18 14:23:14 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:17:41 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,38 +23,43 @@ static int	check_set(char c, char const *trim_set)
 	return (0);
 }
 
-static int	get_trimmed_len(char const *string1, char const *trim_set)
+static int	get_start(char const *string1, char const *trim_set)
 {
-	int	len;
 	int	i;
 
-	len = 0;
 	i = 0;
-	while (string1[i])
-	{
-		if (check_set(string1[i], trim_set) == 0)
-			len++;
+	while (string1[i] && check_set(string1[i], trim_set))
 		i++;
-	}
-	return (len);
+	return (i);
 }
-//123
-//12
+
+static int	get_end(char const *string1, char const *trim_set)
+{
+	int	i;
+
+	i = ft_strlen(string1) - 1;
+	while (i >= 0 && check_set(string1[i], trim_set))
+		i--;
+	return (i);
+}
 
 char	*ft_strtrim(char const *string1, char const *trim_set)
 {
-	int		i;
-	int		j;
+	int		start;
+	int		end;
 	char	*tmp_string;
 
-	i = 0;
-	j = 0;
-	tmp_string = malloc(sizeof(char) * get_trimmed_len(string1, trim_set) + 1);
-	while (string1[i])
-	{
-		if (check_set(string1[i], trim_set) == 0)
-			tmp_string[j++] = string1[i];
-		i++;
-	}
+	if (!string1)
+		return (0);
+	if (!trim_set)
+		return (0);
+	start = get_start(string1, trim_set);
+	end = get_end(string1, trim_set);
+	if (start > end)
+		return (ft_strdup(""));
+	tmp_string = malloc(sizeof(char) * (end - start + 2));
+	if (!tmp_string)
+		return (0);
+	ft_strlcpy(tmp_string, &string1[start], (end - start + 1) + 1);
 	return (tmp_string);
 }
