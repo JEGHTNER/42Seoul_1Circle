@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:21:58 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/23 21:02:53 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/24 17:04:52 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}				t_list;
 
 int				ft_isascii(int c);
 int				ft_isalpha(int c);
@@ -51,5 +57,12 @@ char			*ft_strtrim(char const *string1, char const *trim_set);
 char			*ft_itoa(int number);
 char			**ft_split(char const *string, char seperator);
 char			*ft_strmapi(char const *string, char (*f)(unsigned int, char));
+t_list			*ft_lstnew(void *content);
+void			ft_lstadd_front(t_list **lst, t_list *new);
+int				ft_lstsize(t_list *lst);
+t_list			*ft_lstlast(t_list *lst);
+void			ft_lstadd_back(t_list **lst, t_list *new);
+void			ft_lstdelone(t_list *lst, void (*del)(void*));
+void			ft_lstclear(t_list **lst, void (*del)(void*));
 
 #endif
