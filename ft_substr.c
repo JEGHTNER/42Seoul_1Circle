@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:29:35 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/23 17:03:39 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/26 14:30:08 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*ft_substr(char const *string, unsigned int start, size_t len)
 		return (0);
 	if (start >= str_length)
 		return (ft_strdup(""));
+	if (str_length - start < len)
+		len = str_length - start;
 	tmp_string = malloc(sizeof(char) * (len + 1));
 	if (!tmp_string)
 		return (0);
