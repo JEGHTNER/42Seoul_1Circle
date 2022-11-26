@@ -1,6 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/26 15:18:18 by jehelee           #+#    #+#              #
+#    Updated: 2022/11/26 15:35:59 by jehelee          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	= libft.a
 
-CC		= gcc
+CC		= cc
 CFLAG	= -Wall -Wextra -Werror
 
 RM		= rm -f
@@ -58,11 +70,16 @@ SRCS_BN = ft_lstnew.c		\
 
 SRCS	= $(SRCS_1)			\
 	  	 $(SRCS_2)	\
-		 $(SRCS_BN)\
 
 OBJS	= $(SRCS:.c=.o)
 
 OBJS_BONUS = $(SRCS_BN:.c=.o)
+
+ifdef WITH_BONUS
+	OBJ = ${OBJS} ${OBJS_BONUS}
+else
+	OBJ = ${OBJS}
+endif 
 
 all : $(NAME)
 
@@ -70,17 +87,17 @@ all : $(NAME)
 	$(CC) $(CFLAG) -c $< -o $@
 
 clean :
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJ)
 	$(AR) $(ARFLAGS) $@ $^
 
-bonus : $(OBJS) $(OBJS_BONUS)
-	$(AR) $(ARFLAGS) $(NAME) $^
+bonus :
+	make WITH_BONUS=1 all
 
- .PHONY : all clean fclean re
+ .PHONY : all clean fclean re bonus

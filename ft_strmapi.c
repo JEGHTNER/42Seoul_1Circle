@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:46:06 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/23 15:20:13 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/26 15:31:04 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strmapi(char const *string, char (*f)(unsigned int, char))
 {
-	char	*tmp_string;
-	int		i;
+	char				*tmp_string;
+	unsigned int		i;
 
 	if (!string || !(f))
 		return (0);

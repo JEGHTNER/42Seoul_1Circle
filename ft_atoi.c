@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:59:24 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 18:18:39 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/26 15:26:58 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi(const char *string)
 	unsigned long long			result;
 	unsigned long long			max;
 
-	max = __LONG_LONG_MAX__;
+	max = 9223372036854775807;
 	sign = 1;
 	result = 0;
 	i = check_space_sign(string, &sign);

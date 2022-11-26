@@ -6,4 +6,5 @@ test.c
 *.o
 *.a
 *.txt
+lst_test.c
 
