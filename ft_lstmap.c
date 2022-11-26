@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 17:04:36 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/26 15:12:50 by jehelee          ###   ########.fr       */
+/*   Created: 2022/11/26 12:23:37 by jehelee           #+#    #+#             */
+/*   Updated: 2022/11/26 15:14:56 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*tmp;
-	t_list	*current;
+	t_list	*new_node;
+	t_list	*new_head;
+	void	*ptr;
 
-	if (!lst || !del)
-		return ;
-	if (!(*lst))
-		return ;
-	current = (*lst);
-	while (current)
+	if (!lst || !f || !del)
+		return (NULL);
+	tmp = lst;
+	new_head = NULL;
+	while (tmp)
 	{
-		tmp = current;
-		current = current -> next;
-		ft_lstdelone(tmp, del);
+		ptr = f(tmp -> content);
+		new_node = ft_lstnew(ptr);
+		if (!(new_node))
+		{
+			ft_lstclear(&new_head, del);
+			del(ptr);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_head, new_node);
+		tmp = tmp->next;
 	}
-	*lst = NULL;
+	new_node = NULL;
+	return (new_head);
 }

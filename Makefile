@@ -53,8 +53,8 @@ SRCS_BN = ft_lstnew.c		\
 		  ft_lstadd_back.c	\
 		  ft_lstdelone.c	\
 		  ft_lstclear.c	\
-		  #ft_lstiter.c		\
-		  ft_lstmap.c		\#
+		  ft_lstiter.c		\
+		  ft_lstmap.c		\
 
 SRCS	= $(SRCS_1)			\
 	  	 $(SRCS_2)	\
@@ -70,17 +70,17 @@ all : $(NAME)
 	$(CC) $(CFLAG) -c $< -o $@
 
 clean :
-	$(RM) $(RMFLAG) $(OBJS)
+	$(RM) $(OBJS)
 
 fclean : clean
-	$(RM) $(RMFLAG) $(NAME)
+	$(RM) $(NAME)
 
 re : fclean all
 
-bonus :
-	$(RM) $(RMFLAG) $(OBJS_BONUS)
-
 $(NAME) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
+
+bonus : $(OBJS) $(OBJS_BONUS)
+	$(AR) $(ARFLAGS) $(NAME) $^
 
  .PHONY : all clean fclean re
