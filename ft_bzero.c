@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:33:11 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 13:27:13 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/27 13:24:40 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_bzero(void *ptr, size_t len)
 {
-	char	*tmp;
-	size_t	i;
+	unsigned char	*tmp;
+	size_t			i;
 
-	tmp = (char *)ptr;
+	tmp = (unsigned char *)ptr;
 	i = 0;
 	while (i < len)
 	{

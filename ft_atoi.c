@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:59:24 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/26 15:26:58 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/27 13:12:52 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,33 @@ static int	check_space_sign(const char *string, int *sign)
 	return (i);
 }
 
+static int	check_overflow(unsigned long long result)
+{
+	if (result != 0 && (result * 10 <= result))
+		return (1);
+	else
+		return (0);
+}
+
 int	ft_atoi(const char *string)
 {
 	int							sign;
 	int							i;
+	int							over_flow;
 	unsigned long long			result;
-	unsigned long long			max;
 
-	max = 9223372036854775807;
 	sign = 1;
 	result = 0;
+	over_flow = 0;
 	i = check_space_sign(string, &sign);
 	while (ft_isdigit(string[i]))
 	{
+		over_flow = check_overflow(result);
 		result = result * 10 + string[i] - '0' ;
-		if (sign == 1 && result >= max)
+		over_flow = check_overflow(result);
+		if (sign == 1 && over_flow)
 			return (-1);
-		else if (sign == -1 && result > max)
+		else if (sign == -1 && over_flow)
 			return (0);
 		i++;
 	}

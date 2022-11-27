@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:23:37 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/26 15:14:56 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/27 13:30:07 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	void	*ptr;
 
 	if (!lst || !f || !del)
-		return (NULL);
+		return (0);
 	tmp = lst;
-	new_head = NULL;
+	new_head = 0;
 	while (tmp)
 	{
 		ptr = f(tmp -> content);
@@ -31,11 +31,10 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		{
 			ft_lstclear(&new_head, del);
 			del(ptr);
-			return (NULL);
+			return (0);
 		}
 		ft_lstadd_back(&new_head, new_node);
 		tmp = tmp->next;
 	}
-	new_node = NULL;
 	return (new_head);
 }

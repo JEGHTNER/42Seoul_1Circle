@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 17:04:36 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/26 15:12:50 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/27 13:30:40 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 		current = current -> next;
 		ft_lstdelone(tmp, del);
 	}
-	*lst = NULL;
+	*lst = 0;
 }

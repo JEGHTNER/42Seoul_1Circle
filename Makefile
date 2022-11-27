@@ -6,7 +6,7 @@
 #    By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/26 15:18:18 by jehelee           #+#    #+#              #
-#    Updated: 2022/11/26 15:35:59 by jehelee          ###   ########.fr        #
+#    Updated: 2022/11/27 13:16:56 by jehelee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,6 @@ CFLAG	= -Wall -Wextra -Werror
 RM		= rm -f
 AR		= ar
 ARFLAGS = crs
-
-INCLUDES = ./libft.h 
 
 SRCS_1	= ft_strlen.c		\
 		  ft_strlcpy.c		\
@@ -35,7 +33,7 @@ SRCS_1	= ft_strlen.c		\
 		  ft_memchr.c		\
 		  ft_memcmp.c		\
 		  ft_bzero.c		\
-		  ft_atoi.c		\
+		  ft_atoi.c			\
 		  ft_calloc.c		\
 		  ft_isalnum.c		\
 		  ft_isalpha.c		\
