@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:07:26 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/23 20:27:25 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/27 20:55:57 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	*ft_memset(void *ptr, int value, size_t len)
 		tmp[i] = (unsigned char)value;
 		i++;
 	}
-	return ((void *)ptr);
+	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:43:33 by jehelee           #+#    #+#             */
-/*   Updated: 2022/11/16 16:17:24 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/11/28 12:24:45 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*new_space;
 
+	if (size != 0 && count > SIZE_MAX / size)
+		return (NULL);
 	new_space = malloc(size * count);
 	if (!new_space)
 		return (0);

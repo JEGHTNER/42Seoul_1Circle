@@ -6,7 +6,7 @@
 #    By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/26 15:18:18 by jehelee           #+#    #+#              #
-#    Updated: 2022/11/27 13:16:56 by jehelee          ###   ########.fr        #
+#    Updated: 2022/11/27 20:49:53 by jehelee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM		= rm -f
 AR		= ar
 ARFLAGS = crs
 
-SRCS_1	= ft_strlen.c		\
+SRCS	= ft_strlen.c		\
 		  ft_strlcpy.c		\
 		  ft_strlcat.c		\
 		  ft_strchr.c		\
@@ -43,8 +43,7 @@ SRCS_1	= ft_strlen.c		\
 		  ft_strdup.c		\
 		  ft_tolower.c		\
 		  ft_toupper.c		\
-
-SRCS_2	= ft_substr.c		\
+		  ft_substr.c		\
 		  ft_strjoin.c		\
 		  ft_strtrim.c		\
 		  ft_split.c		\
@@ -65,9 +64,6 @@ SRCS_BN = ft_lstnew.c		\
 		  ft_lstclear.c	\
 		  ft_lstiter.c		\
 		  ft_lstmap.c		\
-
-SRCS	= $(SRCS_1)			\
-	  	 $(SRCS_2)	\
 
 OBJS	= $(SRCS:.c=.o)
 
