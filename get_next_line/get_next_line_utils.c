@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/13 19:54:54 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/12/13 20:27:53 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_list	*find_list(t_list **head, int fd)
 		if (tmp->next == NULL)
 		{
 			tmp->next = new_node(fd);
+			tmp->next->prev = tmp;
 		}
 		tmp = tmp->next;
 	}

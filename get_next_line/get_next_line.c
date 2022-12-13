@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:40:17 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/13 19:54:47 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/12/13 20:59:50 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include "get_next_line.h"
+#include "get_next_line_utils.c"
 
-/*t_list	free_node(t_list *save)
+void	free_node(t_list *save)
 {
-	
+	t_list	*tmp;
+
+	tmp = save;
+	save->prev->next = save->next;
+	free (tmp);
 }
-*/
 
 int	find_enter(t_list *save)
 {
@@ -82,26 +86,32 @@ char	*get_next_line(int fd)
 	t_list			*save;
 	char			*line;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	line = NULL;
 	save = find_list(&head, fd);
 	read_size = 1;
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	while (!(find_enter(save)) && read_size != 0)
+	while (read_size > 0)
 	{
 		read_size = read(fd, buf, BUFFER_SIZE);
 		buf[read_size] = '\0';
 		save->buff = ft_strjoin(save->buff, buf);
+		if (find_enter(save))
+		{	
+			line = split_line(save, read_size);
+			break ;
+		}
 	}
-	line = split_line(save, read_size);
 	free(buf);
+	if (read_size < 0)
+		free_node(save);
 	return (line);
 }
-/*
+
 int main()
 {
-	int fd = open("empty.txt", O_RDONLY);
+	int fd = open("lines_around_10.txt", O_RDONLY);
 	if (fd < 0 )
 		printf ("file open fail\n");
 	else
