@@ -6,20 +6,52 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/11 18:47:41 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/12/13 19:54:54 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdlib.h>
-#include<string.h>
-#define BUFFER_SIZE 5
+#include <stdlib.h>
+#include "get_next_line.h"
+
+t_list	*new_node(int fd)
+{
+	t_list	*tmp;
+
+	tmp = malloc(sizeof(t_list));
+	if (!tmp)
+		return (NULL);
+	tmp->next = NULL;
+	tmp->prev = NULL;
+	tmp->file_descriptor = fd;
+	return (tmp);
+}
+
+t_list	*find_list(t_list **head, int fd)
+{
+	t_list	*tmp;
+
+	if (!(*head))
+		*head = new_node(fd);
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->file_descriptor == fd)
+			return (tmp);
+		if (tmp->next == NULL)
+		{
+			tmp->next = new_node(fd);
+		}
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
 
 size_t	ft_strlen(const char *string)
 {
 	size_t	i;
 
 	i = 0;
-	if(!string)
+	if (!string)
 		return (0);
 	while (string[i])
 		i++;
@@ -31,7 +63,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-	if(!src)
+	if (!src)
 		return (ft_strlen(dst));
 	if (size != 0)
 	{
