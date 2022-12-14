@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:40:17 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/14 19:34:43 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/12/14 19:51:34 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include "get_next_line.h"
-//#include "get_next_line_utils.c"
+#include "get_next_line_utils.c"
 
 void	free_node(t_list *save, t_list **head)
 {
@@ -72,7 +72,7 @@ char	*split_line(t_list *save, ssize_t read_size)
 			save->buff = malloc(tmp_len - i); //malloc 4
 			ft_strlcpy(save->buff, &tmp[i + 1], tmp_len + 1);
 			free (tmp); // free 1
-			break ;
+			return (line);
 		}
 		i++;
 	}
@@ -118,15 +118,15 @@ char	*get_next_line(int fd)
 	}
 	free(buf);
 	buf = NULL;
-	if (read_size <= 0)
+	if (read_size <= 0 && !(save->buff))
 		free_node(save, &head);
 	return (line);
 }
 
-/*
+
 int main()
 {
-	int fd = open("only_nl.txt", O_RDONLY);
+	int fd = open("multiple_nl.txt", O_RDONLY);
 	if (fd < 0 )
 		printf ("file open fail\n");
 	int fd2 = open("one_line_no_nl.txt", O_RDONLY);
@@ -161,4 +161,3 @@ int main()
 		close(fd);	
 	}
 }
-*/
