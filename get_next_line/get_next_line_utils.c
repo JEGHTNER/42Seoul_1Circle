@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/13 20:27:53 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/12/14 18:46:52 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_list	*new_node(int fd)
 		return (NULL);
 	tmp->next = NULL;
 	tmp->prev = NULL;
+	tmp->buff = NULL;
 	tmp->file_descriptor = fd;
 	return (tmp);
 }
@@ -52,10 +53,14 @@ size_t	ft_strlen(const char *string)
 	size_t	i;
 
 	i = 0;
+
 	if (!string)
 		return (0);
-	while (string[i])
+	while (*string)
+	{
 		i++;
+		string++;
+	}
 	return (i);
 }
 
@@ -64,8 +69,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-	if (!src)
-		return (ft_strlen(dst));
+
+	if (!src || !dst)
+		return (0);
 	if (size != 0)
 	{
 		while (src[i] && i + 1 < size)
@@ -84,8 +90,8 @@ char	*ft_strjoin(char const *string1, char const *string2)
 	size_t	string2_len;
 	char	*tmp_string;
 
-	string1_len = ft_strlen(string1);
 	string2_len = ft_strlen(string2);
+	string1_len = ft_strlen(string1);
 	tmp_string = malloc(sizeof(char) * (string1_len + string2_len) + 1);
 	if (!tmp_string)
 		return (0);
