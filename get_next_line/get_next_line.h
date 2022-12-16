@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:28 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/14 16:06:17 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/12/16 15:58:41 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct s_list
 {
 	int				file_descriptor;
-	char			*buff;
+	char			*backup;
 	struct s_list	*next;
 	struct s_list	*prev;
 }t_list;

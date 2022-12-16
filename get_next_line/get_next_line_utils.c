@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/14 18:46:52 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:00:34 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*new_node(int fd)
 		return (NULL);
 	tmp->next = NULL;
 	tmp->prev = NULL;
-	tmp->buff = NULL;
+	tmp->backup = NULL;
 	tmp->file_descriptor = fd;
 	return (tmp);
 }
