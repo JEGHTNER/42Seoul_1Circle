@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/16 16:00:34 by jehelee          ###   ########.fr       */
+/*   Updated: 2022/12/18 20:06:41 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "get_next_line.h"
 
-t_list	*new_node(int fd)
+t_list	*add_fd(int fd)
 {
-	t_list	*tmp;
+	t_list	*new_node;
 
-	tmp = malloc(sizeof(t_list));
-	if (!tmp)
+	new_node = malloc(sizeof(t_list));
+	if (!new_node)
 		return (NULL);
-	tmp->next = NULL;
-	tmp->prev = NULL;
-	tmp->backup = NULL;
-	tmp->file_descriptor = fd;
-	return (tmp);
+	new_node->file_descriptor = fd;
+	new_node->backup = malloc(BUFFER_SIZE);
+	if (!(new_node->backup))
+	{
+		free (new_node);
+		return (NULL);
+	}
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	return (new_node);
 }
 
-t_list	*find_list(t_list **head, int fd)
+t_list	*find_fd(t_list **head, int fd)
 {
 	t_list	*tmp;
 
 	if (!(*head))
-		*head = new_node(fd);
+	{
+		*head = add_fd(fd);
+		if (!*head)
+			return (NULL);
+	}
 	tmp = *head;
 	while (tmp)
 	{
@@ -40,7 +49,9 @@ t_list	*find_list(t_list **head, int fd)
 			return (tmp);
 		if (tmp->next == NULL)
 		{
-			tmp->next = new_node(fd);
+			tmp->next = add_fd(fd);
+			if (!(tmp->next))
+				return (NULL);
 			tmp->next->prev = tmp;
 		}
 		tmp = tmp->next;
@@ -53,7 +64,6 @@ size_t	ft_strlen(const char *string)
 	size_t	i;
 
 	i = 0;
-
 	if (!string)
 		return (0);
 	while (*string)
@@ -69,7 +79,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-
 	if (!src || !dst)
 		return (0);
 	if (size != 0)
