@@ -1,4 +1,22 @@
 #include<stdarg.h>
+#include<stdio.h>
+#include "ft_printf_utils_print.c"
+#include "ft_printf_utils_print2.c"
+char	*ft_strchr(const char *string, int c)
+{
+	char	*tmp;
+
+	tmp = (char *)string;
+	while (*tmp)
+	{
+		if (*tmp == (char)c)
+			return (tmp);
+		tmp++;
+	}
+	if ((char)c == '\0')
+		return (tmp);
+	return (0);
+}
 
 int print_argument(char format, va_list ap)
 {
@@ -20,7 +38,7 @@ int print_argument(char format, va_list ap)
     return (count);
 }
 
-init_parse(char *format, int *i_ptr, va_list ap)
+int init_parse(char *format, int *i_ptr, va_list ap)
 {
     int     count;
 
@@ -30,6 +48,7 @@ init_parse(char *format, int *i_ptr, va_list ap)
     {
         count += print_argument(format[*i_ptr], ap);
     }
+    return (count);
 }
 
 int parse_format(char *format, va_list ap)
@@ -48,7 +67,8 @@ int parse_format(char *format, va_list ap)
             ret_size += init_parse(format, i_ptr, ap);
         else
         {
-            write(1, &format[i] , 1);
+            printf("%c",format[i]);
+            //write(1, &format[i] , 1);
             ret_size++;
         }
         i++;
@@ -65,4 +85,10 @@ int ft_printf(const char *format, ...)
     ret_size = parse_format((char *)format, ap);
     va_end(ap);
     return (ret_size);
+}
+#include<stdio.h>
+int main()
+{
+    printf("%d\n",10);
+    ft_printf("%d\n",10);   
 }
