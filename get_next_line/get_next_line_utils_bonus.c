@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/01 11:37:13 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/01 20:06:39 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,6 @@ t_list	*add_fd(int fd)
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
-}
-
-t_list	*find_fd(t_list **head, int fd)
-{
-	t_list	*tmp;
-
-	if (!(*head))
-	{
-		*head = add_fd(fd);
-		if (!*head)
-			return (NULL);
-	}
-	tmp = *head;
-	while (tmp)
-	{
-		if (tmp->file_descriptor == fd)
-			return (tmp);
-		if (tmp->next == NULL)
-		{
-			tmp->next = add_fd(fd);
-			if (!(tmp->next))
-				return (NULL);
-			tmp->next->prev = tmp;
-		}
-		tmp = tmp->next;
-	}
-	return (NULL);
 }
 
 size_t	ft_strlen(const char *string)
@@ -110,20 +83,18 @@ char	*ft_strjoin(char const *string1, char const *string2)
 	return (tmp_string);
 }
 
-char	*ft_strdup(const char *string)
+char	*ft_strchr(const char *string, int c)
 {
-	char	*new_string;
-	int		i;
+	char	*tmp;
 
-	new_string = (char *)malloc(sizeof(char) * (ft_strlen(string) + 1));
-	if (!new_string)
-		return (0);
-	i = 0;
-	while (string[i])
+	tmp = (char *)string;
+	while (*tmp)
 	{
-		new_string[i] = string[i];
-		i++;
+		if (*tmp == (char)c)
+			return (tmp);
+		tmp++;
 	}
-	new_string[i] = '\0';
-	return (new_string);
+	if ((char)c == '\0')
+		return (tmp);
+	return (0);
 }

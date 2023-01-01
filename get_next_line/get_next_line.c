@@ -6,140 +6,133 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:40:17 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/01 12:23:54 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/01 20:12:19 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>// 지워
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include "get_next_line.h"
-//#include "get_next_line_utils.c"
 
-void	free_node(t_list *save, t_list **head)
+t_list	*find_fd(t_list **head, int fd)
 {
 	t_list	*tmp;
 
-	tmp = save;
-	tmp->backup = NULL;
-	if (save->prev)
-		save->prev->next = save->next;
-	else
-		*head = NULL;
-	free (tmp);
-}
-
-int	find_enter(t_list *save)
-{
-	char	*tmp;
-
-	if (save == NULL)
-		return (0);
-	if (save->backup == NULL)
-		return (0);
-	tmp = save->backup;
-	while (*tmp)
+	if (!(*head))
 	{
-		if (*tmp == '\n')
-			return (1);
-		tmp++;
+		*head = add_fd(fd);
+		if (!*head)
+			return (NULL);
 	}
-	return (0);
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->file_descriptor == fd)
+			return (tmp);
+		if (tmp->next == NULL)
+		{
+			tmp->next = add_fd(fd);
+			if (!(tmp->next))
+				return (NULL);
+			tmp->next->prev = tmp;
+		}
+		tmp = tmp->next;
+	}
+	return (NULL);
 }
 
-char	*split_line(t_list *save, ssize_t read_size)
+char	*remove_fd(t_list *current_fd, t_list **head)
 {
-	char	*tmp;
-	char	*line;
-	size_t	i;
-	size_t	tmp_len;
-
-	i = 0;
-	line = NULL;
-	tmp = save->backup;
-	if (!tmp)
+	if (!current_fd || !*head)
 		return (NULL);
-	tmp_len = ft_strlen(tmp);
-	while (tmp[i])
+	if (current_fd->prev)
+		current_fd->prev->next = current_fd->next;
+	if (current_fd->next)
+		current_fd->next->prev = current_fd->prev;
+	if (current_fd == *head)
+		*head = current_fd->next;
+	free (current_fd->backup);
+	current_fd->backup = NULL;
+	free (current_fd->read_buff);
+	current_fd->read_buff = NULL;
+	free (current_fd);
+
+	return (NULL);
+}
+
+char	*split_line(t_list *current_fd, t_list **head)
+{
+	char	*line;
+	char	*tmp;
+
+	line = NULL;
+	if (!(current_fd->backup && *(current_fd->backup)))
+		return (remove_fd(current_fd, head));
+	tmp = ft_strchr(current_fd->backup, '\n');
+	if (tmp)
+	{	
+		*tmp = '\0';
+		line = ft_strjoin(current_fd->backup, "\n");
+		if (!line)
+			return (remove_fd(current_fd, head));
+		ft_strlcpy(current_fd->backup, tmp + 1, ft_strlen(tmp + 1) + 1);
+		return (line);
+	}
+	else
 	{
-		if (tmp[i] == '\n')
-		{	
-			line = malloc(i + 2); // malloc 3 
-			if (!line)
-				return (NULL);
-			ft_strlcpy(line, tmp, i + 2);
-			save->backup = malloc(tmp_len - i); //malloc 4
-			if (!save->backup)
-			{
-				free (tmp);
-				return (NULL);
-			}
-			ft_strlcpy(save->backup, &tmp[i + 1], tmp_len + 1);
-			free (tmp); // free 1
+		line = ft_strjoin(current_fd->backup, "");
+		if (!line)
+			return (remove_fd(current_fd, head));
+		remove_fd(current_fd, head);
+		return (line);
+	}
+}
+
+char	*read_line(int fd, t_list *current_fd, t_list **head, ssize_t read_size)
+{
+	char			*line;
+	char			*tmp;
+
+	while (1)
+	{
+		read_size = read(fd, current_fd->read_buff, BUFFER_SIZE);
+		if (read_size == 0)
+		{
+			line = split_line(current_fd, head);
 			return (line);
 		}
-		i++;
-	}
-	if (read_size <= 0)
-	{
-		if (!(*save->backup) || read_size == -1)
+		if (read_size == -1)
+			return (remove_fd(current_fd, head));
+		current_fd->read_buff[read_size] = '\0';
+		tmp = ft_strjoin(current_fd->backup, current_fd->read_buff);
+		if (!tmp)
+			return (remove_fd(current_fd, head));
+		free(current_fd->backup);
+		current_fd->backup = tmp;
+		if (ft_strchr(current_fd->backup, '\n') != NULL)
 		{
-			free(save->backup);
-			save->backup = NULL;
-			return (NULL);
+			line = split_line(current_fd, head);
+			return (line);
 		}
-		line = malloc(tmp_len + 1);
-		ft_strlcpy(line, save->backup, tmp_len + 1);
-		free(save->backup);
-		save->backup = NULL;
 	}
-	return (line);
 }
 
 char	*get_next_line(int fd)
 {
 	static t_list	*head;
-	t_list			*save;
-	char			*buf;
+	t_list			*current_fd;
 	char			*line;
 	ssize_t			read_size;
-	char			*tmp;
 
+	line = NULL;
+	read_size = 0;
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	//line = NULL;
-	save = find_list(&head, fd);
-	if (!save)
+	current_fd = find_fd(&head, fd);
+	if (!current_fd)
 		return (NULL);
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1)); //malloc 1
-	if (!buf)
-	{
-		free_node(save, &head);
-		return(NULL);
-	}
-	while (!find_enter(save))
-	{
-		read_size = read(fd, buf, BUFFER_SIZE);
-		if (read_size > 0)
-		{
-			buf[read_size] = '\0';
-			tmp = save->backup;
-			save->backup = ft_strjoin(save->backup, buf); // malloc 2 & null guard
-			if(!save->backup)
-			{
-				free (tmp);
-				return(NULL);
-			}
-			free (tmp);
-		}
-		else
-			break ;
-	}
-	line = split_line(save, read_size);
-	free(buf);
-	if (read_size <= 0 && !(save->backup))
-		free_node(save, &head);
+	line = read_line(fd, current_fd, &head, read_size);
 	return (line);
 }
 
