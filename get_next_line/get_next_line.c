@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:40:17 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/16 16:49:35 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/01 12:23:54 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ char	*split_line(t_list *save, ssize_t read_size)
 			ft_strlcpy(line, tmp, i + 2);
 			save->backup = malloc(tmp_len - i); //malloc 4
 			if (!save->backup)
+			{
+				free (tmp);
 				return (NULL);
+			}
 			ft_strlcpy(save->backup, &tmp[i + 1], tmp_len + 1);
 			free (tmp); // free 1
 			return (line);
@@ -123,6 +126,11 @@ char	*get_next_line(int fd)
 			buf[read_size] = '\0';
 			tmp = save->backup;
 			save->backup = ft_strjoin(save->backup, buf); // malloc 2 & null guard
+			if(!save->backup)
+			{
+				free (tmp);
+				return(NULL);
+			}
 			free (tmp);
 		}
 		else

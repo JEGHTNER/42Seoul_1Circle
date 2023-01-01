@@ -6,12 +6,12 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2022/12/18 20:06:41 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/01 11:37:13 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 t_list	*add_fd(int fd)
 {
@@ -21,12 +21,13 @@ t_list	*add_fd(int fd)
 	if (!new_node)
 		return (NULL);
 	new_node->file_descriptor = fd;
-	new_node->backup = malloc(BUFFER_SIZE);
-	if (!(new_node->backup))
+	new_node->read_buff = malloc(BUFFER_SIZE + 1);
+	if (!(new_node->read_buff))
 	{
 		free (new_node);
 		return (NULL);
 	}
+	new_node->backup = NULL;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
@@ -107,4 +108,22 @@ char	*ft_strjoin(char const *string1, char const *string2)
 	ft_strlcpy(tmp_string, string1, string1_len + 1);
 	ft_strlcpy(tmp_string + string1_len, string2, string2_len + 1);
 	return (tmp_string);
+}
+
+char	*ft_strdup(const char *string)
+{
+	char	*new_string;
+	int		i;
+
+	new_string = (char *)malloc(sizeof(char) * (ft_strlen(string) + 1));
+	if (!new_string)
+		return (0);
+	i = 0;
+	while (string[i])
+	{
+		new_string[i] = string[i];
+		i++;
+	}
+	new_string[i] = '\0';
+	return (new_string);
 }
