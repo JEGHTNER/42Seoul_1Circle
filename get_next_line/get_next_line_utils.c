@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/01 20:06:55 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/02 14:44:20 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*add_fd(int fd)
 	if (!new_node)
 		return (NULL);
 	new_node->file_descriptor = fd;
-	new_node->read_buff = malloc(BUFFER_SIZE + 1);
+	new_node->read_buff = malloc((size_t)BUFFER_SIZE + 1);
 	if (!(new_node->read_buff))
 	{
 		free (new_node);
