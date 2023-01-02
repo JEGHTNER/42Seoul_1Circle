@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:40:17 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/01 20:08:01 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/02 13:29:10 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	*remove_fd(t_list *current_fd, t_list **head)
 	free (current_fd->read_buff);
 	current_fd->read_buff = NULL;
 	free (current_fd);
-
 	return (NULL);
 }
 
