@@ -6,13 +6,10 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:40:17 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/02 13:29:16 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/02 19:27:28 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
 #include "get_next_line.h"
 
 t_list	*find_fd(t_list **head, int fd)

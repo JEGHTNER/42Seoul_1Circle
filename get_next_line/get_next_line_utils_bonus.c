@@ -6,11 +6,10 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:31 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/02 14:44:09 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/02 19:27:18 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "get_next_line_bonus.h"
 
 t_list	*add_fd(int fd)
