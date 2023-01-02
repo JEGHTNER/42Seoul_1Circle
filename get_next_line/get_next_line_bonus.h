@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 16:42:28 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/01 20:12:30 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/02 19:18:14 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_list
 	struct s_list	*prev;
 }t_list;
 
-t_list	*new_node(int fd);
 t_list	*add_fd(int fd);
 t_list	*find_fd(t_list **head, int fd);
 char	*get_next_line(int fd);
