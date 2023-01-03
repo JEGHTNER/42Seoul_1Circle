@@ -6,11 +6,27 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:34:35 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 17:57:11 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/03 18:28:32 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*ft_strchr(const char *string, int c)
+{
+	char	*tmp;
+
+	tmp = (char *)string;
+	while (*tmp)
+	{
+		if (*tmp == (char)c)
+			return (tmp);
+		tmp++;
+	}
+	if ((char)c == '\0')
+		return (tmp);
+	return (0);
+}
 
 size_t	ft_strlen(const char *string)
 {
@@ -32,7 +48,8 @@ int	print_percent(void)
 	int	count;
 
 	count = 0;
-	write(1, "%", 1);
+	if (write(1, "%", 1) == -1)
+		return (-1);
 	count++;
 	return (count);
 }
@@ -44,7 +61,8 @@ int	print_c(va_list ap)
 
 	count = 0;
 	ap_char = (unsigned char)va_arg(ap, int);
-	write(1, &ap_char, 1);
+	if (write(1, &ap_char, 1) == -1)
+		return (-1);
 	count++;
 	return (count);
 }
@@ -58,11 +76,13 @@ int	print_s(va_list ap)
 	ap_str = va_arg(ap, char *);
 	if (!ap_str)
 	{
-		write(1, "(null)", 6);
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
 		count = 6;
 		return (count);
 	}
 	count = ft_strlen(ap_str);
-	write(1, ap_str, count);
+	if (write(1, ap_str, count) == -1)
+		return (-1);
 	return (count);
 }

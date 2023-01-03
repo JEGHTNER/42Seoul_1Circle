@@ -6,21 +6,27 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:39:36 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 17:55:37 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/03 20:20:48 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	display(long long number, int *count)
+int	display(long long number, int *count)
 {
 	long long	wr_num;
 
 	if (number >= 10)
-		display(number / 10, count);
+		if (display(number / 10, count) == -1)
+			return (-1);
 	wr_num = number % 10 + '0';
-	write(1, &wr_num, 1);
+	if (write(1, &wr_num, 1) == -1)
+	{
+		*count = -1;
+		return (-1);
+	}
 	(*count)++;
+	return (1);
 }
 
 int	ft_putnbr_u(unsigned int number)
@@ -42,10 +48,12 @@ int	ft_putnbr_di(int number)
 	if (nbr < 0)
 	{
 		nbr *= -1;
-		write(1, "-", 1);
+		if (write(1, "-", 1) == -1)
+			return (-1);
 		count++;
 	}
-	display(nbr, &count);
+	if (display(nbr, &count) == -1)
+		return (-1);
 	return (count);
 }
 
