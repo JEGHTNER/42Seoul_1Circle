@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:34:28 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 20:04:09 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/03 20:39:03 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	print_argument(char format, va_list ap)
 	return (count);
 }
 
-int	init_parse(char *format, int *i_ptr, va_list ap)
+int	init_parse(char *string, int *i_ptr, va_list ap)
 {
 	int	count;
 	int	check_error;
@@ -43,9 +43,9 @@ int	init_parse(char *format, int *i_ptr, va_list ap)
 	count = 0;
 	check_error = 0;
 	(*i_ptr)++;
-	if (ft_strchr("cspdiuxX%", format[*i_ptr]))
+	if (ft_strchr("cspdiuxX%", string[*i_ptr]))
 	{
-		check_error = print_argument(format[*i_ptr], ap);
+		check_error = print_argument(string[*i_ptr], ap);
 		if (check_error == -1)
 			return (-1);
 		count += check_error;
@@ -53,7 +53,7 @@ int	init_parse(char *format, int *i_ptr, va_list ap)
 	return (count);
 }
 
-int	parse_format(char *format, va_list ap)
+int	parse_format(char *string, va_list ap)
 {
 	int	ret_size;
 	int	i;
@@ -63,18 +63,18 @@ int	parse_format(char *format, va_list ap)
 	ret_size = 0;
 	i = -1;
 	i_ptr = &i;
-	while (format[++i])
+	while (string[++i])
 	{
-		if (format[i] == '%')
+		if (string[i] == '%')
 		{
-			check_error = init_parse(format, i_ptr, ap);
+			check_error = init_parse(string, i_ptr, ap);
 			if (check_error == -1)
 				return (-1);
 			ret_size += check_error;
 		}
 		else
 		{
-			if (write(1, &format[i], 1) == -1)
+			if (write(1, &string[i], 1) == -1)
 				return (-1);
 			ret_size++;
 		}
@@ -82,13 +82,13 @@ int	parse_format(char *format, va_list ap)
 	return (ret_size);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *string, ...)
 {
 	int		ret_size;
 	va_list	ap;
 
-	va_start(ap, format);
-	ret_size = parse_format((char *)format, ap);
+	va_start(ap, string);
+	ret_size = parse_format((char *)string, ap);
 	va_end(ap);
 	return (ret_size);
 }
@@ -98,7 +98,7 @@ int	ft_printf(const char *format, ...)
 // {
 // 	int a;
 // 	int b;
-// 	a = printf("%d\n",10);
-// 	b = ft_printf("%d\n",10);
+// 	a = printf("%u\n",__INT_MAX__ + 1);
+// 	b = ft_printf("%u\n",__INT_MAX__+ 1);
 // 	printf("printf = %d\nft_printf= %d", a, b);
 // }
