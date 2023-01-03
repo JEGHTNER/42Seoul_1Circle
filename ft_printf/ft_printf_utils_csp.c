@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:34:35 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 17:09:49 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/03 17:57:11 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	ft_strlen(const char *string)
 	return (count);
 }
 
-int	print_percent(char format)
+int	print_percent(void)
 {
 	int	count;
 
@@ -56,6 +56,12 @@ int	print_s(va_list ap)
 
 	count = 0;
 	ap_str = va_arg(ap, char *);
+	if (!ap_str)
+	{
+		write(1, "(null)", 6);
+		count = 6;
+		return (count);
+	}
 	count = ft_strlen(ap_str);
 	write(1, ap_str, count);
 	return (count);

@@ -6,14 +6,14 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:34:28 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 17:10:08 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/03 17:56:14 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "ft_printf_utils_diu.c"
-#include "ft_printf_utils_csp.c"
-#include "ft_printf_utils_hex.c"
+// #include "ft_printf_utils_diu.c"
+// #include "ft_printf_utils_csp.c"
+// #include "ft_printf_utils_hex.c"
 
 char	*ft_strchr(const char *string, int c)
 {
@@ -37,7 +37,7 @@ int	print_argument(char format, va_list ap)
 
 	count = 0;
 	if (format == '%')
-		count = print_percent(format);
+		count = print_percent();
 	else if (format == 'd' || format == 'i')
 		count = print_di(ap);
 	else if (format == 'u')
@@ -98,12 +98,12 @@ int	ft_printf(const char *format, ...)
 	return (ret_size);
 }
 
-#include <stdio.h>
-int main()
-{
-	int a;
-	int b;
-	a = printf("%s\n", "abcde");
-	b = ft_printf("%s\n", "abcde");
-	printf("printf = %d\nft_printf= %d", a, b);
-}
+// #include <stdio.h>
+// int main()
+// {
+// 	int a;
+// 	int b;
+// 	a = printf("%u\n", -10);
+// 	b = ft_printf("%u\n", -10);
+// 	printf("printf = %d\nft_printf= %d", a, b);
+// }

@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:39:36 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 16:50:10 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/03 17:55:37 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,16 @@ void	display(long long number, int *count)
 	(*count)++;
 }
 
-int	ft_putnbr_diu(int number)
+int	ft_putnbr_u(unsigned int number)
+{
+	int			count;
+
+	count = 0;
+	display(number, &count);
+	return (count);
+}
+
+int	ft_putnbr_di(int number)
 {
 	long long	nbr;
 	int			count;
@@ -46,7 +55,7 @@ int	print_di(va_list ap)
 	int	ap_int;
 
 	ap_int = va_arg(ap, int);
-	count = ft_putnbr_diu(ap_int);
+	count = ft_putnbr_di(ap_int);
 	return (count);
 }
 
@@ -56,6 +65,6 @@ int	print_u(va_list ap)
 	unsigned int	ap_uint;
 
 	ap_uint = va_arg(ap, unsigned int);
-	count = ft_putnbr_diu(ap_uint);
+	count = ft_putnbr_u(ap_uint);
 	return (count);
 }

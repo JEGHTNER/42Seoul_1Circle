@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:39:59 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 17:00:52 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/03 17:45:25 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 size_t	ft_strlen(const char *string);
 char	*ft_strchr(const char *string, int c);
-int		print_percent(char format);
+int		print_percent(void);
 int		print_c(va_list ap);
 int		print_s(va_list ap);
 void	display(long long number, int *count);
