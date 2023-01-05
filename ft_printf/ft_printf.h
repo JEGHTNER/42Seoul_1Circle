@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:39:59 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/05 14:48:00 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/05 16:24:40 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdarg.h>
+# include "./libft/libft.h"
 
 size_t	ft_strlen(const char *string);
 char	*ft_strchr(const char *string, int c);
