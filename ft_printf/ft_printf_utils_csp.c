@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:34:35 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 18:28:32 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/05 14:23:52 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,35 +54,35 @@ int	print_percent(void)
 	return (count);
 }
 
-int	print_c(va_list ap)
+int	print_c(va_list arg_ptr)
 {
 	int				count;
-	unsigned char	ap_char;
+	unsigned char	arg_ptr_char;
 
 	count = 0;
-	ap_char = (unsigned char)va_arg(ap, int);
-	if (write(1, &ap_char, 1) == -1)
+	arg_ptr_char = (unsigned char)va_arg(arg_ptr, int);
+	if (write(1, &arg_ptr_char, 1) == -1)
 		return (-1);
 	count++;
 	return (count);
 }
 
-int	print_s(va_list ap)
+int	print_s(va_list arg_ptr)
 {
 	int		count;
-	char	*ap_str;
+	char	*arg_ptr_str;
 
 	count = 0;
-	ap_str = va_arg(ap, char *);
-	if (!ap_str)
+	arg_ptr_str = va_arg(arg_ptr, char *);
+	if (!arg_ptr_str)
 	{
 		if (write(1, "(null)", 6) == -1)
 			return (-1);
 		count = 6;
 		return (count);
 	}
-	count = ft_strlen(ap_str);
-	if (write(1, ap_str, count) == -1)
+	count = ft_strlen(arg_ptr_str);
+	if (write(1, arg_ptr_str, count) == -1)
 		return (-1);
 	return (count);
 }

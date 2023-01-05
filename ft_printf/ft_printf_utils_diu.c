@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:39:36 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 20:20:48 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/05 14:23:52 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,22 @@ int	ft_putnbr_di(int number)
 	return (count);
 }
 
-int	print_di(va_list ap)
+int	print_di(va_list arg_ptr)
 {
 	int	count;
-	int	ap_int;
+	int	arg_ptr_int;
 
-	ap_int = va_arg(ap, int);
-	count = ft_putnbr_di(ap_int);
+	arg_ptr_int = va_arg(arg_ptr, int);
+	count = ft_putnbr_di(arg_ptr_int);
 	return (count);
 }
 
-int	print_u(va_list ap)
+int	print_u(va_list arg_ptr)
 {
 	int				count;
-	unsigned int	ap_uint;
+	unsigned int	arg_ptr_uint;
 
-	ap_uint = va_arg(ap, unsigned int);
-	count = ft_putnbr_u(ap_uint);
+	arg_ptr_uint = va_arg(arg_ptr, unsigned int);
+	count = ft_putnbr_u(arg_ptr_uint);
 	return (count);
 }

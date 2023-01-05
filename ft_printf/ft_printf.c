@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:34:28 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 20:39:03 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/05 14:48:38 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // #include "ft_printf_utils_csp.c"
 // #include "ft_printf_utils_hex.c"
 
-int	print_argument(char format, va_list ap)
+int	print_argument(char format, va_list arg_ptr)
 {
 	int	count;
 
@@ -23,29 +23,29 @@ int	print_argument(char format, va_list ap)
 	if (format == '%')
 		count = print_percent();
 	else if (format == 'd' || format == 'i')
-		count = print_di(ap);
+		count = print_di(arg_ptr);
 	else if (format == 'u')
-		count = print_u(ap);
+		count = print_u(arg_ptr);
 	else if (format == 'x' || format == 'X' || format == 'p')
-		count = print_hexp(format, ap);
+		count = print_hexp(format, arg_ptr);
 	else if (format == 'c')
-		count = print_c(ap);
+		count = print_c(arg_ptr);
 	else if (format == 's')
-		count = print_s(ap);
+		count = print_s(arg_ptr);
 	return (count);
 }
 
-int	init_parse(char *string, int *i_ptr, va_list ap)
+int	init_parse(char *string, int *idx_ptr, va_list arg_ptr)
 {
 	int	count;
 	int	check_error;
 
 	count = 0;
 	check_error = 0;
-	(*i_ptr)++;
-	if (ft_strchr("cspdiuxX%", string[*i_ptr]))
+	(*idx_ptr)++;
+	if (ft_strchr("cspdiuxX%", string[*idx_ptr]))
 	{
-		check_error = print_argument(string[*i_ptr], ap);
+		check_error = print_argument(string[*idx_ptr], arg_ptr);
 		if (check_error == -1)
 			return (-1);
 		count += check_error;
@@ -53,28 +53,28 @@ int	init_parse(char *string, int *i_ptr, va_list ap)
 	return (count);
 }
 
-int	parse_format(char *string, va_list ap)
+int	parse_format(char *string, va_list arg_ptr)
 {
 	int	ret_size;
-	int	i;
-	int	*i_ptr;
+	int	idx;
+	int	*idx_ptr;
 	int	check_error;
 
 	ret_size = 0;
-	i = -1;
-	i_ptr = &i;
-	while (string[++i])
+	idx = -1;
+	idx_ptr = &idx;
+	while (string[++idx])
 	{
-		if (string[i] == '%')
+		if (string[idx] == '%')
 		{
-			check_error = init_parse(string, i_ptr, ap);
+			check_error = init_parse(string, idx_ptr, arg_ptr);
 			if (check_error == -1)
 				return (-1);
 			ret_size += check_error;
 		}
 		else
 		{
-			if (write(1, &string[i], 1) == -1)
+			if (write(1, &string[idx], 1) == -1)
 				return (-1);
 			ret_size++;
 		}
@@ -85,11 +85,11 @@ int	parse_format(char *string, va_list ap)
 int	ft_printf(const char *string, ...)
 {
 	int		ret_size;
-	va_list	ap;
+	va_list	arg_ptr;
 
-	va_start(ap, string);
-	ret_size = parse_format((char *)string, ap);
-	va_end(ap);
+	va_start(arg_ptr, string);
+	ret_size = parse_format((char *)string, arg_ptr);
+	va_end(arg_ptr);
 	return (ret_size);
 }
 

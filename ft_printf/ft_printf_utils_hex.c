@@ -6,7 +6,7 @@
 /*   By: jehelee <jehelee@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:34:37 by jehelee           #+#    #+#             */
-/*   Updated: 2023/01/03 20:21:23 by jehelee          ###   ########.fr       */
+/*   Updated: 2023/01/05 14:23:52 by jehelee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	display_hex(unsigned long long number, char *hex, int *count)
 	return (1);
 }
 
-int	ft_puthex_p(unsigned long long ap_hex)
+int	ft_puthex_p(unsigned long long arg_ptr_hex)
 {
 	int		count;
 	char	*low_hex;
@@ -37,40 +37,40 @@ int	ft_puthex_p(unsigned long long ap_hex)
 	if (write(1, "0x", 2) == -1)
 		return (-1);
 	count = 2;
-	display_hex(ap_hex, low_hex, &count);
+	display_hex(arg_ptr_hex, low_hex, &count);
 	return (count);
 }
 
-int	ft_puthex_x(char format, unsigned long long ap_hex)
+int	ft_puthex_x(char format, unsigned long long arg_ptr_hex)
 {
 	int		count;
-	char	*cap_hex;
+	char	*carg_ptr_hex;
 	char	*low_hex;
 
 	count = 0;
-	cap_hex = "0123456789ABCDEF";
+	carg_ptr_hex = "0123456789ABCDEF";
 	low_hex = "0123456789abcdef";
 	if (format == 'x')
-		display_hex(ap_hex, low_hex, &count);
+		display_hex(arg_ptr_hex, low_hex, &count);
 	else
-		display_hex(ap_hex, cap_hex, &count);
+		display_hex(arg_ptr_hex, carg_ptr_hex, &count);
 	return (count);
 }
 
-int	print_hexp(char format, va_list ap)
+int	print_hexp(char format, va_list arg_ptr)
 {
 	int					count;
-	unsigned long long	ap_hex;
+	unsigned long long	arg_ptr_hex;
 
 	if (format == 'p')
 	{
-		ap_hex = (unsigned long long)va_arg(ap, void *);
-		count = ft_puthex_p(ap_hex);
+		arg_ptr_hex = (unsigned long long)va_arg(arg_ptr, void *);
+		count = ft_puthex_p(arg_ptr_hex);
 	}
 	else
 	{
-		ap_hex = va_arg(ap, unsigned int);
-		count = ft_puthex_x(format, ap_hex);
+		arg_ptr_hex = va_arg(arg_ptr, unsigned int);
+		count = ft_puthex_x(format, arg_ptr_hex);
 	}
 	return (count);
 }
